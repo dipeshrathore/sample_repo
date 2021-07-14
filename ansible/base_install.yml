@@ -1,0 +1,6 @@
+---
+- hosts: wordpress_prod
+  become: yes
+  roles:
+    - nginx
+    - php

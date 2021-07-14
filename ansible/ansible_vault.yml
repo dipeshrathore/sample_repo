@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Print DB_name
+      debug:
+        msg: 
+          - "DB_NAME={{ db_name }}"
+          - "DB_USERNAME={{ db_username }}"  
+        

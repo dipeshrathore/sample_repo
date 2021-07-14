@@ -1,0 +1,36 @@
+- name: Add dependencies for PHP versions (Debian).
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+      - gnupg2
+    state: present
+
+- name: Add Ondrej Sury's apt key (Debian).
+  apt_key:
+    url: https://packages.sury.org/php/apt.gpg
+    id: 15058500A0235D97F5D10063B188E2B695BD4743
+    state: present
+
+   
+- name: Create a PPA file to your system with php repository  
+  apt_repository:
+    repo: deb https://packages.sury.org/php/ buster main
+    state: present
+
+- name: Run apt upgrade
+  apt:
+    update_cache: yes    
+
+- name: Install php
+  apt: 
+    name: "{{ php_version }}"
+    state: present
+
+- name: Install php-modules
+  apt: 
+    name: "{{ item }}"
+    state: present    
+  loop:
+     - "{{ php_modules }}"
