@@ -34,7 +34,6 @@ jobs:
         
     - name: Play Ansible Playbook
       uses: actions/checkout@v2
-      working-directory: ansible
       with:
         playbook: ansible/base_install.yml
         inventory: ansible/inventory/host.yml
