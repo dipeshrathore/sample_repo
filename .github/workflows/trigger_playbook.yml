@@ -32,12 +32,18 @@ jobs:
         name: ${{ secrets.USER_NAME }}
         
         
-
-    - name: Run playbook with --check
+    - name: Play Ansible Playbook
+      uses: actions/checkout@v2
       working-directory: ansible
-      run: |
-        ansible-inventory --graph
-        ansible-playbook base_install.yml -i inventory -l wordpress_prod --check
+      with:
+        playbook: ansible/base_install.yml
+        inventory: ansible/inventory/host.yml
+    
+#     - name: Run playbook with --check
+#       working-directory: ansible
+#       run: |
+#         ansible-inventory --graph
+#         ansible-playbook base_install.yml -i inventory -l wordpress_prod --check
 
-      env:
-        ANSIBLE_CONFIG: ansible.cfg  
+#       env:
+#         ANSIBLE_CONFIG: ansible.cfg  
