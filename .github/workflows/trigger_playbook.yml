@@ -37,7 +37,7 @@ jobs:
       working-directory: ansible
       run: |
         ansible-inventory --graph
-        ansible-playbook base_install.yml -l all --check
+        ansible-playbook base_install.yml -i hosts -l wordpress_prod --check
 
       env:
         ANSIBLE_CONFIG: ansible.cfg  
