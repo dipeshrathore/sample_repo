@@ -31,18 +31,13 @@ jobs:
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
         name: ${{ secrets.USER_NAME }}
         
-        
-    - name: Play Ansible Playbook
-      uses: actions/checkout@v2
-      with:
-        playbook: ansible/base_install.yml
-        inventory: ansible/inventory/host.yml
-    
-#     - name: Run playbook with --check
-#       working-directory: ansible
-#       run: |
-#         ansible-inventory --graph
-#         ansible-playbook base_install.yml -i inventory -l wordpress_prod --check
 
-#       env:
-#         ANSIBLE_CONFIG: ansible.cfg  
+    
+    - name: Run playbook with --check
+      working-directory: ansible
+      run: |
+        ansible-inventory --graph
+        ansible-playbook base_install.yml -i inventory -l wordpress_prod --check
+
+      env:
+        ANSIBLE_CONFIG: ansible.cfg  
