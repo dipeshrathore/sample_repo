@@ -1,5 +1,5 @@
 ---
-- hosts: wordpress_prod
+- hosts: all
   become: yes
   roles:
     - nginx
