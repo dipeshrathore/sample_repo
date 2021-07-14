@@ -38,9 +38,6 @@ jobs:
       run: |
         ansible-inventory --graph
         ansible-playbook base_install.yml --check
-      inventory: |
-       [wordpress_prod]
-       47.101.211.0  
 
       env:
         ANSIBLE_CONFIG: ansible.cfg  
