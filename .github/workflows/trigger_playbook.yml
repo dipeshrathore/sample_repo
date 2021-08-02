@@ -33,11 +33,13 @@ jobs:
         
 
     
-    - name: Run playbook with --check
+    - name: Run playbook with --check --diff
       working-directory: ansible
       run: |
+        chmod 666 .vault_password_file
+        echo "$VAULT_PASSWORD" > .vault_password_file      
         ansible-inventory --graph
-        ansible-playbook base_install.yml -i inventory -l wordpress_prod --check
-
+        ansible-playbook wordpress-install.yml --check --diff
       env:
-        ANSIBLE_CONFIG: ansible.cfg  
+        ANSIBLE_CONFIG: ansible.cfg
+        VAULT_PASSWORD: ${{ secrets.VAULT_PASSWORD_FILE }}  
